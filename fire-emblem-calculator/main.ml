@@ -1,6 +1,6 @@
 (* Print separator *)
 let separator =
-  "------------\n"
+  "------------"
 
 (* Weapon cost *)
 let wepCost wep =
@@ -20,25 +20,19 @@ let redCost lv red =
 
 (* Print cost *)
 let print_cost lv wep res red =
-  print_string @@ String.concat ""
+  List.map print_endline
     [ separator
-    ; "Cost for a level "
-    ; string_of_int lv
-    ; " weapon\n"
-    ; "> Weapons   : "
-    ; string_of_int wep
-    ; "\n> Resources : "
-    ; string_of_int res
-    ; "\n> Reduced   : "
-    ; string_of_int red
-    ; "\n"
+    ; "Cost for a level " ^ (string_of_int lv) ^ " weapon"
+    ; "> Weapons   : " ^ (string_of_int wep)
+    ; "> Resources : " ^ (string_of_int res)
+    ; "> Reduced   : " ^ (string_of_int red)
     ]
 
 (* Calculate weapon/resource costs *)
 let () =
   (* Loop and calculate each level's costs *)
   let rec loop lv (wep, res, red) =
-    if lv >= 8 then print_string separator
+    if lv >= 8 then print_endline separator
     else
       (* Calculate new costs *)
       let (nw, nr, nd) =
